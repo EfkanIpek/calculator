@@ -13,6 +13,12 @@ class CalculatorFloatTest {
     }
 
     @Test
+    void addNumbersTooLarge() {
+        CalculatorFloat calculatorFloat= new CalculatorFloat();
+        assertThrows(TooBigNumberException.class, () -> calculatorFloat.addNumbers(Integer.MAX_VALUE, 15));
+    }
+
+    @Test
     void substractNumbers() {
         CalculatorFloat calculatorFloat = new CalculatorFloat();
         assertEquals(0.00000000000000000001f,calculatorFloat.substractNumbers(0.00000000000000000001f,0f), 0.0001);

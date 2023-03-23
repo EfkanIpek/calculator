@@ -1,5 +1,6 @@
 package com.efkancorp;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,15 +8,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorIntTest {
 
     @Test
-    void addNumbers3plus12Equals15() {
+    void addNumbers3plus12Equals15() throws TooBigNumberException {
         CalculatorInt calculatorInt = new CalculatorInt();
         assertEquals(15, calculatorInt.addNumbers(3,12));
     }
 
     @Test
-    void addNumbersMinus5PlusMinus312EqualsMinus8() {
+    void addNumbersMinus5PlusMinus312EqualsMinus8() throws TooBigNumberException {
         CalculatorInt calculatorInt = new CalculatorInt();
         assertEquals(-8, calculatorInt.addNumbers(-5,-3));
+    }
+
+    @Test
+    void addNumberTooLargeThrows() throws TooBigNumberException {
+        CalculatorInt calculatorInt = new CalculatorInt();
+        assertThrows(TooBigNumberException.class, () -> calculatorInt.addNumbers(Integer.MAX_VALUE,1));
     }
 
     @Test
@@ -52,4 +59,5 @@ class CalculatorIntTest {
         CalculatorInt calculatorInt = new CalculatorInt();
         assertEquals(-24, calculatorInt.multiplyNumbers(-6,4));
     }
+
 }
